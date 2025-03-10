@@ -1,4 +1,5 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const usersRouter = require("./routes/usersRouter");
 require("dotenv").config();
 // const connectDB = require("./utils/connectDB"); // ✅ Import without calling
@@ -13,6 +14,7 @@ require("./utils/connectDB")();
 
 //---- Middlewares ----
 app.use(express.json());
+app.use(cookieParser()); // parse the cookie automatically.
 
 //---- Routes ----
 app.use("/api/v1/users", usersRouter);
