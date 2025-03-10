@@ -123,10 +123,29 @@ const logout = asyncHandler(async (req, res) => { // This clears the authenticat
 
 
 
+//------Profile-----
+const userProfile = asyncHandler(async (req, res) => {
+  const id = "67ce74f74660085e8d8373e1"
+  // const user = await User.findById(id).select("-password");
+  const user = await User.findById(id)
+
+  if (user) {
+    res.status(200).json({
+      status: "success",
+      user,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
+
 
 
 module.exports = {
     register,
     login,
     logout,
+    userProfile,
   };
