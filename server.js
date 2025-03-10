@@ -4,6 +4,7 @@ const usersRouter = require("./routes/usersRouter");
 require("dotenv").config();
 // const connectDB = require("./utils/connectDB"); // ✅ Import without calling
 const { errorHandler } = require("./middlewares/errorMiddleware");
+const googleAIRouter = require("./routes/geminiAIRouter");
 
 const app = express();
 const PORT = process.env.PORT || 8090;
@@ -18,6 +19,7 @@ app.use(cookieParser()); // parse the cookie automatically.
 
 //---- Routes ----
 app.use("/api/v1/users", usersRouter);
+app.use("/api/v1/google", googleAIRouter);
 //--- Error handler middleware ----
 app.use(errorHandler);
 
