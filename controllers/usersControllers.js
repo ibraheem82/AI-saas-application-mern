@@ -125,10 +125,7 @@ const logout = asyncHandler(async (req, res) => { // This clears the authenticat
 
 //------Profile-----
 const userProfile = asyncHandler(async (req, res) => {
-  const id = "67ce74f74660085e8d8373e1"
-  // const user = await User.findById(id).select("-password");
-  const user = await User.findById(id)
-
+  const user = await User.findById(req?.user?.id).select("-password");
   if (user) {
     res.status(200).json({
       status: "success",
