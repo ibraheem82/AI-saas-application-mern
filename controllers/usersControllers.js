@@ -81,7 +81,7 @@ const login = asyncHandler(async (req, res) => {
   const token = jwt.sign({ id: user?._id }, process.env.JWT_SECRET, {
     expiresIn: "3d", //token expires in 3 days
   });
-  console.log(token);
+  // console.log(token);
   //set the token into cookie (http only)
   /*
   * -> This sets a cookie named "token" and assigns it the value of token.
