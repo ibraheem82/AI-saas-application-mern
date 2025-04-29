@@ -1,6 +1,7 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cron = require("node-cron");
+const cors = require("cors");
 const usersRouter = require("./routes/usersRouter");
 require("dotenv").config();
 // const connectDB = require("./utils/connectDB"); // ✅ Import without calling
@@ -100,7 +101,12 @@ require("./utils/connectDB")();
 //---- Middlewares ----
 app.use(express.json());
 app.use(cookieParser()); // parse the cookie automatically.
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true
+};
 
+app.use(cors(corsOptions));
 //---- Routes ----
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/google", googleAIRouter);
