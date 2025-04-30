@@ -75,9 +75,9 @@ const userSchema = new mongoose.Schema(
 // * -> If this.trialActive is true, it means the user is supposed to be in the trial period.
 // * -> If today’s date is earlier than the expiration date, this returns true (trial is still valid).
 // *-> If today’s date is the same or after the expiration date, this returns false (trial has ended).
-userSchema.virtual('isTrialActive').get(function(){ 
-  return this.trialActive && new Date() < this.trialExpires;
-})
+// userSchema.virtual('isTrialActive').get(function(){ 
+//   return this.trialActive && new Date() < this.trialExpires;
+// })
 
 //! Compile to form the model
 const User = mongoose.model("User", userSchema);
