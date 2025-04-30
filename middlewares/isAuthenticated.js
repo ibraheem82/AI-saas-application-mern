@@ -15,5 +15,4 @@ const isAuthenticated = asyncHandler(async (req, res, next) => {
     return res.status(401).json({ message: "Not authorized, no token" });
   }
 });
-
 module.exports = isAuthenticated;
