@@ -13,9 +13,34 @@ const User = require("./models/User");
 const app = express();
 const PORT = process.env.PORT || 8090;
 
-//Cron for the trial period : run every single
+/*
+! Explanation CRON JOB
+-> The Cron Pattern "0 0 * * * *":
+This string is a standard way to define recurring time intervals. The pattern has six parts: second minute hour day_of_month month day_of_week.
+ -----> 0: the 0th second
+0: the 0th minute
+2: the 2nd hour (2:00 AM)
+2: on the 2nd day of the month
+4: the 4th month (April)
+3: the 3rd day of the week (Wednesday, assuming Sunday is 0 or 7, and Monday is 1. Some systems use 0-6 or 1-7 for day of week). Let's assume Monday=1, so 3 means Wednesday.
+  0: Specifies the second (the 0th second).
+  0: Specifies the minute (the 0th minute).
+  *: Specifies every hour.
+  *: Specifies every day of the month.
+  *: Specifies every month.
+  *: Specifies every day of the week.
+
+
+    ->
+
+    */
+
+
+
+
+
+// this code sets up a scheduled task that runs every day at midnight. Its purpose is to find all users whose free trial period has expired and automatically switch them to a 'Free' subscription plan by updating their trialActive, subscriptionPlan, and monthlyRequestCount fields in the database.
 cron.schedule("0 0 * * * *", async () => {
-    console.log("This task runs every second");
     try {
       //get the current date
       const today = new Date();
@@ -28,7 +53,7 @@ cron.schedule("0 0 * * * *", async () => {
           monthlyRequestCount: 5
         }
       );
-  
+
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +79,7 @@ cron.schedule("0 0 1 * * *", async () => {
     }
   });
 
-  
+
   //Cron for the Basic plan: run at the end of every month
 cron.schedule("0 0 1 * * *", async () => {
     try {
@@ -73,7 +98,7 @@ cron.schedule("0 0 1 * * *", async () => {
       console.log(error);
     }
   });
-  
+
   //Cron for the Premium plan: run at the end of every month
   cron.schedule("0 0 1 * * *", async () => {
     try {
